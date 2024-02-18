@@ -64,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 BottomNavigationBarItem(
                   activeIcon: Icon(Icons.star_rate),
                   icon: Icon(Icons.star_rate_outlined),
-                  label: 'Favourite',
+                  label: 'Important',
                 ),
               ]),
         ),
