@@ -13,53 +13,58 @@ class HomeScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      // shrinkWrap: true,
-      slivers: [
-        const SliverToBoxAdapter(
-          child: CustomAppBar(),
-        ),
-        SliverToBoxAdapter(
-          child: verticalSpace(12),
-        ),
-        SliverToBoxAdapter(
-          child: AppTextFormField(
-            hintText: 'Search',
-            suffixIcon: const Icon(
-              Icons.search,
-              size: 30,
-              color: ColorManager.mainBlue,
+    return SafeArea(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 12.w),
+        child: CustomScrollView(
+          // shrinkWrap: true,
+          slivers: [
+            const SliverToBoxAdapter(
+              child: CustomAppBar(),
             ),
-            contentPadding:
-                EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
-          ),
+            SliverToBoxAdapter(
+              child: verticalSpace(12),
+            ),
+            SliverToBoxAdapter(
+              child: AppTextFormField(
+                hintText: 'Search',
+                suffixIcon: const Icon(
+                  Icons.search,
+                  size: 30,
+                  color: ColorManager.mainBlue,
+                ),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Text(
+                'Notes:',
+                style: TextStyles.font22DarkBlueMedium,
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: verticalSpace(12),
+            ),
+            const SliverToBoxAdapter(
+              child: NoteListView(),
+            ),
+            SliverToBoxAdapter(
+              child: verticalSpace(8),
+            ),
+            SliverToBoxAdapter(
+              child: Text(
+                'Today\'s tasks:',
+                style: TextStyles.font22DarkBlueMedium,
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: verticalSpace(12),
+            ),
+            const TasksListView(),
+          ],
         ),
-        SliverToBoxAdapter(
-          child: Text(
-            'Notes:',
-            style: TextStyles.font22DarkBlueMedium,
-          ),
-        ),
-        SliverToBoxAdapter(
-          child: verticalSpace(12),
-        ),
-        const SliverToBoxAdapter(
-          child: NoteListView(),
-        ),
-        SliverToBoxAdapter(
-          child: verticalSpace(8),
-        ),
-        SliverToBoxAdapter(
-          child: Text(
-            'Today\'s tasks:',
-            style: TextStyles.font22DarkBlueMedium,
-          ),
-        ),
-        SliverToBoxAdapter(
-          child: verticalSpace(12),
-        ),
-        const TasksListView(),
-      ],
+      ),
     );
   }
 }

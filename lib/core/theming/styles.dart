@@ -101,4 +101,9 @@ class TextStyles {
     color: ColorManager.mainBlue,
     fontWeight: FontWeightHelper.semiBold,
   );
+  static TextStyle font18BlueSemiBold = TextStyle(
+    fontSize: 18.sp,
+    color: ColorManager.mainBlue,
+    fontWeight: FontWeightHelper.semiBold,
+  );
 }
