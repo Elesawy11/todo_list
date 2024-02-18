@@ -15,7 +15,7 @@ class AppTextFormField extends StatelessWidget {
       this.suffixIcon,
       this.obscureText,
       this.inputTextStyle,
-      this.backGroundColor});
+      this.backGroundColor, this.maxLines, this.onSaved});
   final EdgeInsetsGeometry? contentPadding;
   final InputBorder? focusedBorder;
   final InputBorder? enabledBorder;
@@ -25,11 +25,17 @@ class AppTextFormField extends StatelessWidget {
   final bool? obscureText;
   final TextStyle? inputTextStyle;
   final Color? backGroundColor;
+  final int? maxLines;
+  final void Function(String?)? onSaved;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLines: maxLines?? 1,
+      onSaved: onSaved,
+      
       decoration: InputDecoration(
+        
           isDense: true,
           contentPadding: contentPadding ??
               EdgeInsets.symmetric(vertical: 18.h, horizontal: 20.w),
