@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomAppBar(
         clipBehavior: Clip.antiAlias,
         elevation: 0.5,
-        height: 70.h,
+        height: 72.h,
         shape: const CircularNotchedRectangle(),
         notchMargin: 10,
         child: Container(
@@ -64,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 BottomNavigationBarItem(
                   activeIcon: Icon(Icons.star_rate),
                   icon: Icon(Icons.star_rate_outlined),
-                  label: 'Favourite',
+                  label: 'Important',
                 ),
               ]),
         ),
