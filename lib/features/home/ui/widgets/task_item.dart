@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:todo_list/core/helpers/spacing.dart';
@@ -81,38 +82,44 @@ class _TaskItemState extends State<TaskItem> {
               ],
             ),
             const Spacer(
-              flex: 1,
+              
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              EditTaskScreen(taskModel: widget.taskModel),
-                        ));
-                  },
-                  icon: const Icon(
-                    Icons.edit,
-                    size: 20,
-                    color: Colors.black,
-                  ),
+            Padding(
+              padding:  EdgeInsets.only(right: 4.w),
+              child: SizedBox(
+                width: 30.w,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  EditTaskScreen(taskModel: widget.taskModel),
+                            ));
+                      },
+                      icon: const Icon(
+                        Icons.edit,
+                        size: 20,
+                        color: Colors.black,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        widget.taskModel.delete();
+                        BlocProvider.of<FetchTaskCubit>(context).fetchTasks();
+                      },
+                      icon: const Icon(
+                        Icons.delete,
+                        size: 28,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
                 ),
-                IconButton(
-                  onPressed: () {
-                    widget.taskModel.delete();
-                    BlocProvider.of<FetchTaskCubit>(context).fetchTasks();
-                  },
-                  icon: const Icon(
-                    Icons.delete,
-                    size: 28,
-                    color: Colors.black,
-                  ),
-                ),
-              ],
+              ),
             )
           ],
         ),
