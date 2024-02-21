@@ -2,8 +2,19 @@ THINK App
 is a todo list app with feature of add note create by dart language (flutter).
 app support any language in text direction
 user can create ,delete and edit task and note
-task item contain: content text , date of create , three icons one edit icon to edit task , delete icon to delete task and check icon to check if user done task or note.
-note item contain: title text,content text,date of create note,icon to delete note, and color of note item.
+task item contain: 
+- content text
+- date of create
+- three icons one edit:
+- icon to edit task
+- delete icon to delete task
+- check icon to check if user done task or not.
+note item contain:
+- title text
+- content text
+- date of create note
+- icon to delete note
+- color of note item.
 app use local storage to store data.
 app size is suitable for all screens.
 app has splach screen suitable for all android versions.
