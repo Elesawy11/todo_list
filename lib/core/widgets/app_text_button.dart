@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -16,7 +15,8 @@ class AppTextButton extends StatelessWidget {
       this.horizontalPadding,
       this.verticalPadding,
       this.buttonWidth,
-      this.buttonHeight});
+      this.buttonHeight,
+      this.isLoading = false});
   final void Function()? onPressed;
   final String buttonText;
   final TextStyle? buttonStyle;
@@ -26,6 +26,7 @@ class AppTextButton extends StatelessWidget {
   final double? verticalPadding;
   final double? buttonWidth;
   final double? buttonHeight;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +56,13 @@ class AppTextButton extends StatelessWidget {
           ),
         ),
         onPressed: onPressed,
-        child: Text(
-          buttonText,
-          style: buttonStyle ?? TextStyles.font16WhiteSemiBold,
-        ));
+        child: isLoading
+            ? const CircularProgressIndicator(
+                color: Colors.blue,
+              )
+            : Text(
+                buttonText,
+                style: buttonStyle ?? TextStyles.font16WhiteSemiBold,
+              ));
   }
 }
