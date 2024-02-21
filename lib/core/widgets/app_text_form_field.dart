@@ -15,7 +15,9 @@ class AppTextFormField extends StatelessWidget {
       this.suffixIcon,
       this.obscureText,
       this.inputTextStyle,
-      this.backGroundColor, this.maxLines, this.onSaved});
+      this.backGroundColor,
+      this.maxLines,
+      this.onSaved, this.validator, this.onChanged});
   final EdgeInsetsGeometry? contentPadding;
   final InputBorder? focusedBorder;
   final InputBorder? enabledBorder;
@@ -27,15 +29,18 @@ class AppTextFormField extends StatelessWidget {
   final Color? backGroundColor;
   final int? maxLines;
   final void Function(String?)? onSaved;
+  final String? Function(String?)? validator;
+  final void Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      maxLines: maxLines?? 1,
+      maxLines: maxLines ?? 1,
+      onChanged: onChanged,
       onSaved: onSaved,
-      
+      // in this case only 
+      validator: validator,
       decoration: InputDecoration(
-        
           isDense: true,
           contentPadding: contentPadding ??
               EdgeInsets.symmetric(vertical: 18.h, horizontal: 20.w),

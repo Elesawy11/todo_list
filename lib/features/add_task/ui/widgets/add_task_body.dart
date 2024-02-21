@@ -1,51 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:todo_list/core/helpers/spacing.dart';
-import 'package:todo_list/core/theming/color.dart';
-import 'package:todo_list/core/widgets/app_text_button.dart';
-import 'package:todo_list/core/widgets/app_text_form_field.dart';
+import 'package:todo_list/core/helpers/extension.dart';
+import 'package:todo_list/features/add_task/logic/cubits/create_task/create_task_cubit.dart';
+import 'package:todo_list/features/add_task/logic/cubits/fetch_task/fetch_task_cubit.dart';
+import 'add_task_form.dart';
 
-class AddTaskBody extends StatefulWidget {
+class AddTaskBody extends StatelessWidget {
   const AddTaskBody({super.key});
 
   @override
-  State<AddTaskBody> createState() => _AddTaskBodyState();
-}
-
-class _AddTaskBodyState extends State<AddTaskBody> {
-  final GlobalKey<FormState> formKey = GlobalKey();
-  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-
-  @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.only(
-            left: 14.w,
-            right: 14.w,
-            top: 34.h,
-            bottom: MediaQuery.of(context).viewInsets.bottom),
-        child: Form(
-            key: formKey,
-            autovalidateMode: AutovalidateMode.disabled,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                AppTextFormField(
-                  onSaved: (p0) {},
-                  backGroundColor: ColorManager.darkBlue,
-                  hintText: 'content',
-                  maxLines: 3,
-                ),
-                verticalSpace(24),
-                AppTextButton(
-                  onPressed: () {},
-                  buttonText: 'Add',
-                  backgroundColor: ColorManager.darkBlue,
-                ),
-                verticalSpace(12)
-              ],
-            )),
+    return BlocProvider(
+      create: (context) => CreateTaskCubit(),
+      child: BlocConsumer<CreateTaskCubit, CreateTaskState>(
+        listener: (context, state) {
+          if (state is CreateTaskSuccess) {
+            BlocProvider.of<FetchTaskCubit>(context).fetchTasks();
+            context.pop();
+          }
+        },
+        builder: (context, state) {
+          return AbsorbPointer(
+            absorbing: state is CreateTaskLoading ? true : false,
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.only(
+                    left: 14.w,
+                    right: 14.w,
+                    top: 34.h,
+                    bottom: MediaQuery.of(context).viewInsets.bottom),
+                child:const AddTaskForm(),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
