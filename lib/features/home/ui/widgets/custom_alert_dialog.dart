@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list/core/helpers/extension.dart';
 import 'package:todo_list/core/theming/styles.dart';
 import 'package:todo_list/features/add_note.dart/ui/add_note.dart';
 import 'package:todo_list/features/add_task/ui/add_task.dart';
@@ -19,26 +20,32 @@ class CustomAlertDialog extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             ElevatedButton(
-              onPressed: () => showModalBottomSheet(
-                backgroundColor: Colors.white.withOpacity(0.8),
-                context: context,
-                builder: (context) {
-                  return const AddNote();
-                },
-              ),
+              onPressed: () {
+                context.pop();
+                showModalBottomSheet(
+                  backgroundColor: Colors.white.withOpacity(0.8),
+                  context: context,
+                  builder: (context) {
+                    return const AddNote();
+                  },
+                );
+              },
               child: Text(
                 'Note',
                 style: TextStyles.font14DarkBlueMedium,
               ),
             ),
             ElevatedButton(
-              onPressed: () => showModalBottomSheet(
-                backgroundColor: Colors.white.withOpacity(0.8),
-                context: context,
-                builder: (context) {
-                  return const AddTask();
-                },
-              ),
+              onPressed: () {
+                context.pop();
+                showModalBottomSheet(
+                  backgroundColor: Colors.white.withOpacity(0.8),
+                  context: context,
+                  builder: (context) {
+                    return const AddTask();
+                  },
+                );
+              },
               child: Text('Task', style: TextStyles.font14DarkBlueMedium),
             ),
           ],

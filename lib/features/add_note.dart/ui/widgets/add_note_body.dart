@@ -1,61 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:todo_list/core/helpers/spacing.dart';
-import 'package:todo_list/core/theming/color.dart';
-import 'package:todo_list/core/widgets/app_text_button.dart';
-import 'package:todo_list/core/widgets/app_text_form_field.dart';
-import 'package:todo_list/features/add_note.dart/ui/widgets/color_list_view.dart';
+import 'package:todo_list/core/helpers/extension.dart';
+import 'package:todo_list/features/add_note.dart/logic/cubit/note_cubit.dart';
+import '../../logic/fetch_note_cubit/fetch_note_cubit.dart';
+import 'add_note_form.dart';
 
-class AddNoteBody extends StatefulWidget {
+class AddNoteBody extends StatelessWidget {
   const AddNoteBody({super.key});
-
-  @override
-  State<AddNoteBody> createState() => _AddNoteBodyState();
-}
-
-class _AddNoteBodyState extends State<AddNoteBody> {
-  final GlobalKey<FormState> formKey = GlobalKey();
-  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.only(
-            left: 14.w,
-            right: 14.w,
-            top: 34.h,
-            bottom: MediaQuery.of(context).viewInsets.bottom),
-        child: Form(
-            key: formKey,
-            autovalidateMode: AutovalidateMode.disabled,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                AppTextFormField(
-                  onSaved: (p0) {},
-                  hintText: 'Title',
-                  backGroundColor: ColorManager.darkBlue,
+    return BlocProvider(
+      create: (context) => NoteCubit(),
+      child: Builder(builder: (context) {
+        final NoteCubit cubit = BlocProvider.of(context);
+        return BlocConsumer<NoteCubit, NoteState>(
+          bloc: cubit,
+          listener: (context, state) {
+            if (state is AddNoteSuccess) {
+              BlocProvider.of<FetchNoteCubit>(context).fetchNotes();
+              context.pop();
+            }
+          },
+          builder: (context, state) {
+            return AbsorbPointer(
+              absorbing: state is AddNoteLoading ? true : false,
+              child: SingleChildScrollView(
+                  child: Padding(
+                padding: EdgeInsets.only(
+                    left: 14.w,
+                    right: 14.w,
+                    top: 34.h,
+                    bottom: MediaQuery.of(context).viewInsets.bottom),
+                child: AddNoteForm(
+                  isLoading: state is AddNoteLoading ? true : false,
                 ),
-                verticalSpace(24),
-                AppTextFormField(
-                  onSaved: (p0) {},
-                  backGroundColor: ColorManager.darkBlue,
-                  hintText: 'content',
-                  maxLines: 3,
-                ),
-                verticalSpace(24),
-                ColorListView(),
-                verticalSpace(24),
-                AppTextButton(
-                  onPressed: () {},
-                  buttonText: 'Add',
-                  backgroundColor: ColorManager.darkBlue,
-                ),
-                verticalSpace(12)
-              ],
-            )),
-      ),
+              )),
+            );
+          },
+        );
+      }),
     );
   }
 }
