@@ -13,29 +13,39 @@ class HomeScreenBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 12.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const CustomAppBar(),
-            verticalSpace(12),
-            verticalSpace(12),
-            Text(
-              'Notes:',
-              style: TextStyles.font22DarkBlueMedium,
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const CustomAppBar(),
+                  verticalSpace(12),
+                  Text(
+                    'Notes:',
+                    style: TextStyles.font22DarkBlueMedium,
+                  ),
+                  verticalSpace(12),
+                  const NoteListView(),
+                  verticalSpace(12),
+                  Text(
+                    'Today\'s tasks:',
+                    style: TextStyles.font22DarkBlueMedium,
+                  ),
+                  verticalSpace(12),
+                ],
+              ),
             ),
-            verticalSpace(12),
-            const NoteListView(),
-            verticalSpace(12),
-            Text(
-              'Today\'s tasks:',
-              style: TextStyles.font22DarkBlueMedium,
+          ),
+          SliverFillRemaining(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12.w),
+              child: const TasksListView(),
             ),
-            verticalSpace(12),
-            const TasksListView(),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

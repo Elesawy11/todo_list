@@ -15,8 +15,8 @@ class TasksListView extends StatelessWidget {
         return state is FetchTaskSuccess
             ? Expanded(
                 child: ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
                   scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
                   itemCount: state.tasksList.length,
                   itemBuilder: (context, index) => TaskItem(
                     taskModel: state.tasksList[index],
