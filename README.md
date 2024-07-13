@@ -1,29 +1,30 @@
-THINK App
-is a todo list app with feature of add note create by dart language (flutter).
-app support any language in text direction
-user can create ,delete and edit task and note
-task item contain: 
-- content text
-- date of create
-- three icons one edit:
-- icon to edit task
-- delete icon to delete task
-- check icon to check if user done task or not.
-note item contain:
-- title text
-- content text
-- date of create note
-- icon to delete note
-- color of note item.
-app use local storage to store data.
-app size is suitable for all screens.
-app has splach screen suitable for all android versions.
-packges used:
-- use <Hive> package to access local storage.
-- use flutter screen_util for Responsive. 
-- use flutter_native_splash.
-- flutter bloc for state mangement.
-#flutter
+#👨‍⚕️ Welcome to the Think App repository! 🩺
+Are you looking for an application that provides you write your tasks and notes?  Then Think App is the solution
 
-![photo_2024-02-21_23-45-39](https://github.com/Elesawy11/todo_list/assets/91203838/b686ebc5-518c-4a50-9f18-9236b63b42bc)
+#Overview:
+🚀 Built with Dart & Flutter Framework for seamless performance and stunning UI.
 
+🎨 Crafted with meticulous attention to detail, ensuring an intuitive and visually appealing user experience.
+
+✨ Leveraging packages like fancy shimmer effect, image, and provider for enhanced functionality.
+
+🧼 Emphasizing clean, readable code for easy maintenance and scalability.
+
+👉 Hive Package to access local storage
+
+🎯 MVVM Design pattern
+
+# 🎨 UI
+
+## Home Screen
+![photo_2024-07-13_13-01-36](https://github.com/user-attachments/assets/ef13a8ad-0b0c-41c8-b6db-bb1a7c72d12e)
+## Botton Shet
+![photo_2024-07-13_13-01-40](https://github.com/user-attachments/assets/28117c41-c2bc-42a0-8fca-8a09a20ccf81)
+## Add Note Screen
+![photo_2024-07-13_13-00-47](https://github.com/user-attachments/assets/ac337797-fd16-4fe5-830f-6c8d9460af58)
+## Add Task Screen
+![photo_2024-07-13_13-01-44](https://github.com/user-attachments/assets/40a6155a-2ba9-459b-b1f5-2ca511b88e2f)
+## Edit Note Screen
+![photo_2024-07-13_13-01-26](https://github.com/user-attachments/assets/2ddade2e-6163-4c49-82a5-e267cc2be762)
+## Edit Task Screen
+![photo_2024-07-13_13-01-31](https://github.com/user-attachments/assets/bf676ea1-97f0-4382-aff7-616f30be886b)
